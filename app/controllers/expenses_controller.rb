@@ -7,4 +7,8 @@ class ExpensesController < ApplicationController
   def show
     @expense = Expense.find(params[:id])
   end
+
+  def new
+    @expense = Expense.new
+  end
 end

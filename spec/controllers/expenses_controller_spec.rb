@@ -30,4 +30,16 @@ describe ExpensesController do
       response.should render_template "show"
     end
   end
+
+  describe "GET new" do
+    before {get :new}
+
+    it "assigns a new expense" do
+      assigns(:expense).should be_kind_of Expense
+    end
+
+    it "renders the new template" do
+      response.should render_template "new"
+    end
+  end
 end
