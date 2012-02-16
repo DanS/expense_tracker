@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ExpensesController do
+  let(:expense) {Factory(:expense)} #make expense memoized method available
 
   describe "GET index" do
     it "assigns all expenses as @expenses" do
@@ -11,6 +12,20 @@ describe ExpensesController do
     it "renders the index template" do
       get :index
       response.should render_template "index"
+    end
+  end
+
+  describe "GET show" do
+    before do
+      get :show, :id => expense.to_param
+    end
+
+    it "assigns an expense" do
+      assigns(:expense).should == expense
+    end
+
+    it "renders the show template" do
+      response.should render_template "show"
     end
   end
 end
