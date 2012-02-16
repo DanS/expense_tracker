@@ -6,8 +6,8 @@ development:
   timeout: 5000
   host: localhost
   port: 5432
-  username: rails
-  password: rails
+  username: 
+  password: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,8 +19,8 @@ test:
   timeout: 5000
   host: localhost
   port: 5432
-  username: rails
-  password: rails
+  username: 
+  password: 
 
 production:
   adapter: postgresql
@@ -29,5 +29,5 @@ production:
   timeout: 5000
   host: localhost
   port: 5432
-  username: rails
-  password: rails
+  username: 
+  password: 
