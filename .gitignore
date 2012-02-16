@@ -13,3 +13,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore Rubymine files
+\.idea/*
+
+\.DS_Store
+\.rspec
+\.rvmrc
+/config/database.yml
