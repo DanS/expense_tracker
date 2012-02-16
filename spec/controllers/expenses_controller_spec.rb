@@ -58,4 +58,45 @@ describe ExpensesController do
       response.should render_template "edit"
     end
   end
+
+  describe "POST create" do
+    describe "with valid attributes" do
+      let(:valid_attributes) {Factory.attributes_for(:expense)}
+
+      it "saves a newly created expense" do
+        expect {
+          post :create, :expense => valid_attributes
+        }.to change(Expense, :count).by(1)
+      end
+
+      it "renders the show template" do
+        post :create, :expense => valid_attributes
+        response.should redirect_to expense_path(assigns(:expense).id)
+      end
+
+      it "sets a flash message" do
+        post :create, :expense => valid_attributes
+        flash[:notice].should == "expense created successfully"
+      end
+    end
+
+    describe "with invalid attributes" do
+
+      it "saves a newly created expense" do
+        expect {
+          post :create, :expense => {}
+        }.not_to change(Expense, :count)
+      end
+
+      it "re renders the new template" do
+        post :create, :expense => {}
+        response.should render_template "new"
+      end
+
+      it "sets a flash message" do
+        post :create, :expense => {}
+        flash[:error].should_not be_nil
+      end
+    end
+  end
 end
