@@ -4,13 +4,15 @@ describe ExpensesController do
   let(:expense) {Factory(:expense)} #make expense memoized method available
 
   describe "GET index" do
-    it "assigns all expenses as @expenses" do
+    before do
       get :index
+    end
+
+    it "assigns all expenses as @expenses" do
       assigns(:expenses).should_not be_nil
     end
 
     it "renders the index template" do
-      get :index
       response.should render_template "index"
     end
   end
