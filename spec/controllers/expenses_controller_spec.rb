@@ -3,6 +3,12 @@ require 'spec_helper'
 describe ExpensesController do
   let(:expense) {Factory(:expense)} #make expense memoized method available
 
+  shared_examples_for "finding expense" do
+    it "assigns expense" do
+      assigns(:expense).should == expense
+    end
+  end
+
   describe "GET index" do
     before do
       get :index
@@ -22,9 +28,7 @@ describe ExpensesController do
       get :show, :id => expense.to_param
     end
 
-    it "assigns an expense" do
-      assigns(:expense).should == expense
-    end
+    it_should_behave_like "finding expense"
 
     it "renders the show template" do
       response.should render_template "show"
@@ -40,6 +44,18 @@ describe ExpensesController do
 
     it "renders the new template" do
       response.should render_template "new"
+    end
+  end
+
+  describe "GET edit" do
+    before do
+      get :edit, :id => expense.to_param
+    end
+
+    it_should_behave_like "finding expense"
+
+    it "renders the edit template" do
+      response.should render_template "edit"
     end
   end
 end
