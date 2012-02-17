@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ExpensesController do
-  let(:expense) {Factory(:expense)} #make expense memoized method available
+  let(:expense) { Factory(:expense) } #make expense memoized method available
 
   shared_examples_for "finding expense" do
     it "assigns expense" do
@@ -36,7 +36,7 @@ describe ExpensesController do
   end
 
   describe "GET new" do
-    before {get :new}
+    before { get :new }
 
     it "assigns a new expense" do
       assigns(:expense).should be_kind_of Expense
@@ -61,7 +61,7 @@ describe ExpensesController do
 
   describe "POST create" do
     describe "with valid attributes" do
-      let(:valid_attributes) {Factory.attributes_for(:expense)}
+      let(:valid_attributes) { Factory.attributes_for(:expense) }
 
       it "saves a newly created expense" do
         expect {
@@ -116,7 +116,7 @@ describe ExpensesController do
     end
 
     describe "with invalid params" do
-        before {put :update, :id => expense.to_param, :expense => {:amount => nil}}
+      before { put :update, :id => expense.to_param, :expense => {:amount => nil} }
 
       it "re renders the edit template" do
         response.should render_template "edit"
