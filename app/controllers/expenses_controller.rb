@@ -22,8 +22,19 @@ class ExpensesController < ApplicationController
     if @expense.save
       redirect_to @expense, notice: "expense created successfully"
     else
-      flash[:error] =  @expense.errors.full_messages
+      flash[:error] = @expense.errors.full_messages
       render action: "new", error: @expense.errors.full_messages
+    end
+  end
+
+  def update
+    @expense = Expense.find params[:id]
+
+    if @expense.update_attributes(params[:expense])
+      redirect_to @expense, notice: "expense updated successfully"
+    else
+      flash[:error] = @expense.errors.full_messages
+      render action: "edit", error: @expense.errors.full_messages
     end
   end
 end

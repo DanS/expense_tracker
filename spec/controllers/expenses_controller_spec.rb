@@ -99,4 +99,32 @@ describe ExpensesController do
       end
     end
   end
+
+  describe "PUT update" do
+    describe "with valid params" do
+      before { put :update, :id => expense.to_param, :expense => {:amount => 20} }
+
+      it_should_behave_like "finding expense"
+
+      it "updates the expense" do
+        expense.reload.amount.should == 20
+      end
+
+      it "redirects to the index" do
+        response.should redirect_to expense
+      end
+    end
+
+    describe "with invalid params" do
+        before {put :update, :id => expense.to_param, :expense => {:amount => nil}}
+
+      it "re renders the edit template" do
+        response.should render_template "edit"
+      end
+
+      it "sets flash error" do
+        flash[:error].should_not be_nil
+      end
+    end
+  end
 end
