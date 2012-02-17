@@ -37,4 +37,10 @@ class ExpensesController < ApplicationController
       render action: "edit", error: @expense.errors.full_messages
     end
   end
+
+  def destroy
+    expense = Expense.find(params[:id])
+    expense.destroy
+    redirect_to expenses_path
+  end
 end

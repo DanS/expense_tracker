@@ -127,4 +127,17 @@ describe ExpensesController do
       end
     end
   end
+
+  describe "DELETE destroy" do
+    before {@expense = Factory(:expense)}
+
+    it "deletes the expense" do
+      expect {delete :destroy, :id => @expense.to_param}.to change(Expense, :count).by(-1)
+    end
+
+    it "renders index" do
+      delete :destroy, :id => @expense.to_param
+      response.should redirect_to expenses_path
+    end
+  end
 end
