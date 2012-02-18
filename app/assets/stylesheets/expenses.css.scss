@@ -31,7 +31,9 @@ table.expenses {
   border: 1px solid #000;
   margin: 5px;
   label {
-    width: 160px;
+    display: block;
+    float: left;
+    width: 70px;
     font-weight: bold;
   }
 
@@ -42,6 +44,10 @@ table.expenses {
   .line-item {
     padding: 5px 5px;
   }
+}
+
+div.element {
+  margin-top: 20px;
 }
 
 nav {
