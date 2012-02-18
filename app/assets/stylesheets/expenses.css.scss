@@ -2,19 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table.expenses{
+table.expenses {
   width: 100%;
   border: 2px solid #000;
   border-collapse: collapse;
-  caption {background-color: #cccccc; }
-  tr:nth-child(even) { background-color: #f0e68c;}
-  td, th{
+  caption {
+    background-color: #cccccc;
+  }
+  tr:nth-child(even) {
+    background-color: #f0e68c;
+  }
+  td, th {
     border: 1px solid #000;
     padding: 4px;
   }
-  td:nth-child(1){ width: 50px}
-  td:nth-child(2){width: 150px}
-  td:nth-child(n+4){width: 60px}
+  td:nth-child(1) {
+    width: 50px
+  }
+  td:nth-child(2) {
+    width: 150px
+  }
+  td:nth-child(n+4) {
+    width: 60px
+  }
+}
 
 .sub-container {
   border: 1px solid #000;
