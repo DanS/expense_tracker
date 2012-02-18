@@ -20,11 +20,17 @@ describe Expense do
       @expense.should_not be_valid
     end
 
+    it "is not valid without user_id" do
+      @expense.user_id = nil
+      @expense.should_not be_valid
+    end
+
     it "reports error when non-number assigned to amount" do
       @expense.amount = 'wrong'
       @expense.should_not be_valid
       @expense.errors.should_not be_empty
     end
+
   end
 
   describe "associations" do
