@@ -19,5 +19,11 @@ describe Expense do
       @expense.category = nil
       @expense.should_not be_valid
     end
+
+    it "reports error when non-number assigned to amount" do
+      @expense.amount = 'wrong'
+      @expense.should_not be_valid
+      @expense.errors.should_not be_empty
+    end
   end
 end
