@@ -26,4 +26,10 @@ describe Expense do
       @expense.errors.should_not be_empty
     end
   end
+
+  describe "associations" do
+    it "has a User" do
+      subject.should respond_to :user
+    end
+  end
 end

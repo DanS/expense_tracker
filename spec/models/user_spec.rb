@@ -13,4 +13,10 @@ describe User do
       @user.should_not be_valid
     end
   end
+
+  describe "associations" do
+    it "has expenses" do
+      subject.should respond_to :expenses
+    end
+  end
 end
