@@ -55,5 +55,9 @@ module ExpenseTracker
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #recommened by Devise when using Rails 3.1 on Heroku
+    #forces app not to load models or access db when compiling assets
+    config.assets.initialize_on_precompile = false
   end
 end
