@@ -15,4 +15,26 @@ table.expenses{
   td:nth-child(1){ width: 50px}
   td:nth-child(2){width: 150px}
   td:nth-child(n+4){width: 60px}
+
+.sub-container {
+  border: 1px solid #000;
+  margin: 5px;
+  label {
+    width: 160px;
+    font-weight: bold;
+  }
+
+  span {
+    padding-left: 50px;
+  }
+
+  .line-item {
+    padding: 5px 5px;
+  }
+}
+
+nav {
+  a {
+    margin: 15px;
+  }
 }

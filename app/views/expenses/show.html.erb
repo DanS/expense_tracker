@@ -1,0 +1,22 @@
+<h2>Expense detail</h2>
+
+<div class="sub-container">
+  <div class="line-item">
+    <label>Amount</label>
+    <span>$<%= @expense.amount %></span>
+  </div>
+  <div class="line-item">
+    <label>Category</label>
+    <span><%= @expense.category %></span>
+  </div>
+  <div class="line-item">
+    <label>Description</label>
+    <span><%= @expense.description %></span>
+  </div>
+</div>
+
+<nav>
+  <%= link_to "back", expenses_path %>
+  <%= link_to "edit", edit_expense_path(@expense) %>
+  <%= link_to 'Delete', @expense, confirm: 'Are you sure?', method: :delete %>
+</nav>
