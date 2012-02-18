@@ -7,7 +7,7 @@ describe ExpensesController do
   before do
     @user = Factory(:user)
   end
-  
+
   let(:expense) { Factory(:expense, :user_id => @user.id) } #make expense memoized method available
 
   shared_examples_for "finding expense" do
@@ -17,7 +17,7 @@ describe ExpensesController do
   end
 
   describe "with signed in user" do
-    before {sign_in @user}
+    before { sign_in @user }
 
     describe "GET index" do
       before do
@@ -152,4 +152,43 @@ describe ExpensesController do
     end
   end
 
+  describe "with unsigned in user" do
+    before { sign_out @user }
+
+    it "redirects index page requests to sign in page" do
+      get :index, {}
+      response.should redirect_to new_user_session_path
+    end
+
+    it "redirects show page requests to sign in page" do
+      get :show, :id => expense.to_param
+      response.should redirect_to new_user_session_path
+    end
+
+    it "redirects edit page requests to sign in page" do
+      get :edit, :id => expense.to_param
+      response.should redirect_to new_user_session_path
+    end
+
+    it "redirects new page requests to sign in page" do
+      get :new
+      response.should redirect_to new_user_session_path
+    end
+
+    it "will not create new expenses" do
+      expect {
+        post :create, :expense => Factory.attributes_for(:expense, :user_id => @user.id)
+      }.not_to change(Expense, :count)
+    end
+
+    it "will not update expenses" do
+      put :update, :id => expense.to_param, :expense => {:amount => 20}
+      expense.reload.amount.should == 10
+    end
+
+    it "will not delete expenses" do
+      @expense = Factory(:expense)
+      expect { delete :destroy, :id => @expense.to_param }.not_to change(Expense, :count)
+    end
+  end
 end
