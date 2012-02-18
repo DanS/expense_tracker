@@ -25,6 +25,11 @@ describe Expense do
       @expense.should_not be_valid
     end
 
+    it "is not valid without valid associated user" do
+      @expense.user.email = nil
+      @expense.should_not be_valid
+    end
+
     it "reports error when non-number assigned to amount" do
       @expense.amount = 'wrong'
       @expense.should_not be_valid
