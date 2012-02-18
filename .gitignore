@@ -21,3 +21,5 @@
 \.rspec
 \.rvmrc
 /config/database.yml
+
+/coverage
