@@ -24,7 +24,7 @@ describe ExpensesController do
         get :index
       end
 
-      it "assigns all expenses as @expenses" do
+      it "assigns @expenses" do
         assigns(:expenses).should_not be_nil
       end
 
@@ -149,6 +149,20 @@ describe ExpensesController do
         delete :destroy, :id => @expense.to_param
         response.should redirect_to expenses_path
       end
+    end
+
+    describe "non admin user" do
+      before {@other_users_expense = Factory(:expense)}
+
+      it "does not see other users expenses in index" do
+        get :index, {}
+        assigns(:expenses).should_not include @other_users_expense
+      end
+
+      it "raises routing error for other users expenses" do
+        expect {get :show, :id => @other_users_expense.to_param}.to raise_error(ActionController::RoutingError)
+      end
+
     end
   end
 

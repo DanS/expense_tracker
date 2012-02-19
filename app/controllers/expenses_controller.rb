@@ -2,11 +2,11 @@ class ExpensesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @expenses = Expense.all
+    @expenses = Expense.for_user(current_user)
   end
 
   def show
-    @expense = Expense.find(params[:id])
+    @expense = Expense.find_by_id_and_user_id(params[:id], current_user.id) || not_found
   end
 
   def new
