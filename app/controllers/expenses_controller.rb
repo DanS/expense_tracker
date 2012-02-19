@@ -18,7 +18,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @expense = Expense.new params[:expense]
+    @expense = Expense.new(params[:expense].merge(:user_id => current_user.id))
 
     if @expense.save
       redirect_to @expense, notice: "expense created successfully"

@@ -71,7 +71,7 @@ describe ExpensesController do
 
     describe "POST create" do
       describe "with valid attributes" do
-        let(:valid_attributes) { Factory.attributes_for(:expense, :user_id => @user.id) }
+        let(:valid_attributes) { Factory.attributes_for(:expense) }
 
         it "saves a newly created expense" do
           expect {
