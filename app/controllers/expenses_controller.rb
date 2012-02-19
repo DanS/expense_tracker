@@ -14,7 +14,7 @@ class ExpensesController < ApplicationController
   end
 
   def edit
-    @expense = Expense.find(params[:id])
+    @expense = Expense.find_by_id_and_user_id(params[:id], current_user.id) || not_found
   end
 
   def create
@@ -29,7 +29,7 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    @expense = Expense.find params[:id]
+    @expense = Expense.find_by_id_and_user_id(params[:id], current_user.id) || not_found
 
     if @expense.update_attributes(params[:expense])
       redirect_to @expense, notice: "expense updated successfully"
@@ -40,7 +40,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    expense = Expense.find(params[:id])
+    expense = Expense.find_by_id_and_user_id(params[:id], current_user.id) || not_found
     expense.destroy
     redirect_to expenses_path
   end

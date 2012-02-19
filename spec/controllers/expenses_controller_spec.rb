@@ -139,7 +139,7 @@ describe ExpensesController do
     end
 
     describe "DELETE destroy" do
-      before { @expense = Factory(:expense) }
+      before { @expense = Factory(:expense, :user_id => @user.id) }
 
       it "deletes the expense" do
         expect { delete :destroy, :id => @expense.to_param }.to change(Expense, :count).by(-1)
@@ -159,8 +159,20 @@ describe ExpensesController do
         assigns(:expenses).should_not include @other_users_expense
       end
 
-      it "raises routing error for other users expenses" do
+      it "raises routing error when trying to show other users expense" do
         expect {get :show, :id => @other_users_expense.to_param}.to raise_error(ActionController::RoutingError)
+      end
+
+      it "raises routing error when trying to edit other users expense" do
+        expect {get :edit, :id => @other_users_expense.to_param}.to raise_error(ActionController::RoutingError)
+      end
+
+      it "raises routing error when trying to update other users expense" do
+        expect {put :update, :id => @other_users_expense.to_param, :expense => {:amount => 20}}.to raise_error(ActionController::RoutingError)
+      end
+
+      it "raises routing error when trying to delete other users expense" do
+        expect {delete :destroy, :id => @other_users_expense.to_param}.to raise_error(ActionController::RoutingError)
       end
 
     end
