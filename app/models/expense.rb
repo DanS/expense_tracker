@@ -4,8 +4,4 @@ class Expense < ActiveRecord::Base
   validates_associated :user
 
   belongs_to :user
-
-  def self.for_user(user)
-    where(:user_id => user.id)
-  end
 end

@@ -44,27 +44,4 @@ describe Expense do
     end
   end
 
-  describe "for_user method" do
-
-    before do
-      @user = Factory(:user)
-      @user_expenses = (1..2).map {Factory(:expense, :user_id => @user.id)}.map(&:id)
-      @others_expenses = (1..2).map {Factory(:expense)}.map(&:id)
-    end
-
-    it "returns nothing if user has no expenses" do
-      user = Factory(:user)
-      Expense.for_user(user).should be_empty
-    end
-
-    it "returns the expenses for user" do
-      @user_expenses.should include(Expense.for_user(@user).first.id)
-      @user_expenses.should include(Expense.for_user(@user).last.id)
-    end
-
-    it "does not return other users expenses" do
-      @others_expenses.should_not include(Expense.for_user(@user).first.id)
-      @others_expenses.should_not include(Expense.for_user(@user).last.id)
-    end
-  end
 end
